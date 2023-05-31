@@ -45,8 +45,7 @@ def capture_audio(duration):
     stream.close()
     p.terminate()
 
-    # Save audio as a WAV file with timestamp in the file name
-    timestamp = time.strftime("%Y%m%d-%H%M%S")
+    # Save audio as a WAV file
     filename = f"audio.wav"
 
     wf = wave.open(filename, 'wb')
