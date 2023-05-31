@@ -52,13 +52,30 @@ def capture_audio(duration):
 async def identify_song(audio_file):
     shazam = Shazam()
     recognize_result = await shazam.recognize_song(audio_file)
-    
-    if 'track' in recognize_result:
+
+    if recognize_result.get('matches'):
+#    if 'matches' in recognize_result and len(recognize_result['matches']) > 0:    
+#    if 'track' in recognize_result:
         song_info = recognize_result['track']
         album_art_url = song_info['images']['coverarthq']
         album_art = Image.open(urlopen(album_art_url))
         album_art.show()
     else:
+        # Clear the previous album art
+    #    album_art_label.configure(image="")
+        # Display fallback image when no match is found
+        fallback_image = Image.open("no_match.png")
+        fallback_photo = ImageTk.PhotoImage(fallback_image)
+
+        # Update the label widget with the fallback image
+        album_art_label.configure(image=fallback_photo)
+        album_art_label.image = fallback_photo
+
+        # Update the display
+        window.update()
+
+        # Clear the song name label
+        song_name_label.configure(text="No match found")
         print("No match found.")
 
     print("----- Matching Debug Information -----")
