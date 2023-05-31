@@ -105,9 +105,6 @@ async def identify_song(audio_file, window):
     print(f"Audio file: {audio_file}")
     print("Matching results:")
     print(recognize_result)
-#    print("***** SONG NAME ******")
-#    print(song_name)
-#    print("--------------------------------------")
 
 # Main function
 def main():
@@ -123,19 +120,13 @@ def main():
     screen_height = 720
     window.geometry(f"{screen_width}x{screen_height}")
 
-    # Create a label widget for the album art
+    # Create a label widget for the album art and label
     global album_art_label  # Declare it as a global variable
     global song_name_label 
 
     album_art_label = tk.Label(window)
-    #album_art_label.pack()
     album_art_label.place(relx=0, rely=0, relwidth=1, relheight=1)
-    #album_art_label.pack(fill=tk.BOTH, expand=True)
     
-    # Create a label widget for the song name
-    #song_name_label = tk.Label(window, text="", font=("Arial", 20))
-    #song_name_label.pack()
-
     song_name_label = tk.Label(window, text="", font=("Arial", 30), bg='white', fg='black')
     song_name_label.place(relx=0.05, rely=0.92, relwidth=0.9, relheight=0.07)
 
@@ -148,7 +139,6 @@ def main():
 
     # Destroy the tkinter window
     window.destroy()
-
 
 if __name__ == '__main__':
     import asyncio
